@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="sdc.js"></script>
+</head>
+<body>
+    <h1>sdc.js Example</h1>
+    <p>(in browser)</p>
+    <hr>
+    http://
+    <input id="ip" placeholder="SDCar IP" value="192.168.1.51">
+    :
+    <input id="port" placeholder="SDCar Port" value="3000">
+    <button onclick="connect()">Connect</button>
+    <hr>
+    <button id="forward">Forward</button>
+    <button id="backward">Backward</button>
+    <script>
+        var sdccar = new SDCar("192.168.1.51", "3000")
+
+        function connect() {
+            sdccar = new SDCar(document.getElementById("ip").value, document.getElementById("port").value)
+            alert("Connected to " + document.getElementById("ip").value + ":" + document.getElementById("port").value)
+        }
+
+        document.getElementById("forward").onmousedown = function() {
+            sdccar.forward(4)
+        }
+        document.getElementById("forward").onmouseup = function() {
+            sdccar.brake()
+        }
+        document.getElementById("backward").onmousedown = function() {
+            sdccar.forward(-4)
+        }
+        document.getElementById("backward").onmouseup = function() {
+            sdccar.brake()
+        }
+    </script>
+</body>
+</html>
